@@ -1,0 +1,700 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #172d67;
+  background: radial-gradient(circle, rgb(255, 74, 80) 0%, rgb(23, 45, 103) 100%);
+  background-attachment: fixed;
+}
+
+header {
+  width: 100%;
+  height: 100vh;
+  font-family: "Roboto", sans-serif;
+}
+header nav {
+  display: flex;
+  justify-content: space-between;
+  height: 10vh;
+}
+header .logo {
+  padding: 1vw;
+  margin-left: 2rem;
+}
+header .hamburger {
+  display: none;
+  margin-right: 5vw;
+  margin-top: 5vh;
+}
+header .hamburger .bar {
+  display: block;
+  width: 1.4rem;
+  height: 0.2rem;
+  margin: 0.3rem auto;
+  background: #eee;
+  transition: all 0.3s ease-in-out;
+}
+header ul {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 1.2vw;
+  letter-spacing: 0.1vw;
+  margin-right: 2vw;
+}
+header ul li {
+  list-style-type: none;
+}
+header ul li #blog {
+  background: #ff4a50;
+}
+header ul li #blog:hover {
+  color: #172d67;
+}
+header ul a {
+  text-decoration: none;
+  color: #eee;
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  transition: 0.2s ease-in-out;
+  position: relative;
+}
+header ul a:hover {
+  color: #ff4a50;
+}
+header h1 {
+  position: absolute;
+  color: #eee;
+  font-size: 7vw;
+  text-align: center;
+  width: 100%;
+  top: 25%;
+  z-index: 1;
+  letter-spacing: 0.1vw;
+}
+header h1::before {
+  content: attr(data-text);
+  position: absolute;
+  color: #172d67;
+  -webkit-text-stroke: 2px #ff4a50;
+  z-index: -1;
+  top: 5px;
+}
+header .mobile-break {
+  display: none;
+}
+header .glitch {
+  position: relative;
+  -webkit-animation: opacity 2s linear;
+          animation: opacity 2s linear;
+  text-decoration: underline;
+}
+@-webkit-keyframes glitch {
+  2%, 64% {
+    transform: translate(2px, 0) skew(0deg);
+  }
+  4%, 60% {
+    transform: translate(-2px, 0) skew(0deg);
+  }
+  62% {
+    transform: translate(0, 0) skew(5deg);
+  }
+}
+@keyframes glitch {
+  2%, 64% {
+    transform: translate(2px, 0) skew(0deg);
+  }
+  4%, 60% {
+    transform: translate(-2px, 0) skew(0deg);
+  }
+  62% {
+    transform: translate(0, 0) skew(5deg);
+  }
+}
+header .glitch::before,
+header .glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  text-decoration: underline;
+}
+header .glitch::before {
+  -webkit-animation: glitchTop 1s linear infinite;
+          animation: glitchTop 1s linear infinite;
+  clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+}
+@-webkit-keyframes glitchTop {
+  2%, 64% {
+    transform: translate(2px, -2px);
+  }
+  4%, 60% {
+    transform: translate(-2px, 2px);
+  }
+  62% {
+    transform: translate(13px, -1px) skew(-13deg);
+  }
+}
+@keyframes glitchTop {
+  2%, 64% {
+    transform: translate(2px, -2px);
+  }
+  4%, 60% {
+    transform: translate(-2px, 2px);
+  }
+  62% {
+    transform: translate(13px, -1px) skew(-13deg);
+  }
+}
+header .glitch::after {
+  -webkit-animation: glitchBotom 1.5s linear infinite;
+          animation: glitchBotom 1.5s linear infinite;
+  clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
+  -webkit-clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
+}
+@-webkit-keyframes glitchBotom {
+  2%, 64% {
+    transform: translate(-2px, 0);
+  }
+  4%, 60% {
+    transform: translate(-2px, 0);
+  }
+  62% {
+    transform: translate(-22px, 5px) skew(21deg);
+  }
+}
+@keyframes glitchBotom {
+  2%, 64% {
+    transform: translate(-2px, 0);
+  }
+  4%, 60% {
+    transform: translate(-2px, 0);
+  }
+  62% {
+    transform: translate(-22px, 5px) skew(21deg);
+  }
+}
+header .header-content {
+  width: 70%;
+  height: 70%;
+  border: 2px solid #ff4a50;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 10px;
+  background: #172d67;
+  border-radius: 3px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+header .more-button {
+  display: inline-flex;
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  perspective: 200px;
+  perspective-origin: calc(100% - 52px);
+}
+header button {
+  cursor: pointer;
+  background: none;
+  border: none;
+  position: relative;
+  color: #eee;
+  text-transform: uppercase;
+  padding: 0 25px;
+  font-size: 2vw;
+  height: 50px;
+  line-height: 50px;
+  letter-spacing: 3px;
+  background-color: #ff4a50;
+}
+header .button-icon {
+  font-weight: 700;
+  background: #eee;
+  color: #172d67;
+  text-align: center;
+  font-size: 24px;
+  width: 50px;
+  height: 50px;
+  line-height: 42px;
+  box-sizing: border-box;
+  border: 4px solid #ff4a50;
+  border-left: none;
+  transition: 400ms transform ease-in-out;
+  transform: rotateY(90deg);
+  transform-origin: left;
+}
+header .more-button:hover .button-icon {
+  transform: rotateY(0deg);
+}
+
+main {
+  background: linear-gradient(180deg, rgba(255, 74, 80, 0.001) 0%, rgb(23, 45, 103) 60%);
+  padding-bottom: 10vh;
+}
+main .introduce {
+  padding: 5vh 0;
+}
+main .introduce .top-decor {
+  width: 100%;
+  height: 20vh;
+  background-image: url(../img/3dtriangles.svg);
+}
+main .introduce .bottom-decor {
+  width: 100%;
+  height: 20.5vh;
+  background-image: url(../img/3dtriangles2.svg);
+}
+main .introduce .introduce-text-container {
+  background: rgba(23, 45, 103, 0.5);
+  display: flex;
+  margin: 0 auto;
+  padding: 5vw;
+  justify-content: space-between;
+  align-items: center;
+}
+main .introduce .introduce-text-container p {
+  width: 50%;
+  color: #eee;
+  font-size: 1.5vw;
+  font-weight: 400;
+  padding-left: 5%;
+  font-family: "Roboto", sans-serif;
+  line-height: 5vh;
+  letter-spacing: 0.1vw;
+}
+main .introduce .introduce-text-container img {
+  margin-right: 10vw;
+  align-self: center;
+  width: 20%;
+}
+
+.who-we-are-section {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20vh;
+}
+.who-we-are-section .who-we-are h1 {
+  color: #eee;
+  text-align: center;
+  font-size: 5vw;
+  font-family: "Open Sans", sans-serif;
+  position: relative;
+  letter-spacing: 0.1vw;
+  z-index: 1;
+}
+.who-we-are-section .who-we-are h1::before {
+  content: attr(data-text);
+  text-transform: uppercase;
+  position: absolute;
+  color: #172d67;
+  -webkit-text-stroke: 2px #00b3be;
+  top: 5px;
+  z-index: -1;
+}
+.who-we-are-section .who-we-are-flex {
+  display: flex;
+  justify-content: space-between;
+  width: 70%;
+  margin: 0 auto;
+}
+.who-we-are-section .who-we-are-flex .who-we-are-flex-item {
+  width: 30%;
+  text-align: center;
+}
+.who-we-are-section .who-we-are-flex .who-we-are-img-container {
+  width: 150px;
+  height: 150px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 50%;
+  margin: 0 auto;
+  border: 3px solid #00b3be;
+  box-shadow: rgba(0, 179, 190, 0.44) 0px 0px 50px;
+}
+.who-we-are-section .who-we-are-flex .who-we-are-img-container img {
+  position: absolute;
+  display: inline;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 100px;
+}
+.who-we-are-section .who-we-are-flex .who-we-are-text-container {
+  color: #eee;
+  font-size: 1vw;
+  font-family: "Open Sans", sans-serif;
+  padding: 1vw;
+  border-radius: 3px;
+}
+.who-we-are-section .who-we-are-flex .who-we-are-text-container h2 {
+  margin-bottom: 4vh;
+  font-size: 2vw;
+  position: relative;
+}
+.who-we-are-section .who-we-are-flex .who-we-are-text-container p {
+  font-size: 1vw;
+  letter-spacing: 0.1vw;
+  text-align: left;
+}
+
+.what-we-do-section {
+  margin-bottom: 10vh;
+}
+.what-we-do-section h1 {
+  color: #eee;
+  text-align: center;
+  font-size: 5vw;
+  font-family: "Open Sans", sans-serif;
+  position: relative;
+  letter-spacing: 0.1vw;
+  z-index: 1;
+}
+.what-we-do-section h1::before {
+  content: attr(data-text);
+  text-transform: uppercase;
+  position: absolute;
+  color: #172d67;
+  -webkit-text-stroke: 2px #00b3be;
+  top: 5px;
+  z-index: -1;
+}
+
+.what-we-do-flex {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  margin: auto;
+  background: #172d67;
+  border: 2px solid #00b3be;
+  box-shadow: rgba(0, 179, 190, 0.64) 0px 25px 50px;
+  padding: 5vh 4vw;
+}
+.what-we-do-flex img {
+  width: 100%;
+}
+.what-we-do-flex .what-we-do-decor {
+  width: 30px;
+  height: 100%;
+  background: #ff4a50;
+}
+.what-we-do-flex .what-we-do-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.what-we-do-flex .what-we-do-container:hover .svg {
+  transform: rotate(180deg);
+}
+.what-we-do-flex .what-we-do-img-container {
+  position: relative;
+}
+.what-we-do-flex .what-we-do-img-container .product-image {
+  position: absolute;
+  z-index: 1;
+  margin: 0 auto;
+  right: 0;
+}
+.what-we-do-flex .what-we-do-img-container .svg {
+  position: relative;
+  width: 120%;
+  height: 100%;
+  transition: all 0.8s ease-in-out;
+}
+.what-we-do-flex .what-we-do-img-container .svg:hover {
+  transform: rotate(180deg);
+}
+.what-we-do-flex .what-we-do-text-container {
+  position: relative;
+  color: #eee;
+  width: 90%;
+  font-size: 1vw;
+  font-family: "Open Sans", sans-serif;
+  padding-bottom: 7rem;
+}
+.what-we-do-flex .what-we-do-text-container h2 {
+  margin-bottom: 4vh;
+  font-size: 2vw;
+  position: relative;
+  letter-spacing: 0.1vw;
+}
+.what-we-do-flex .what-we-do-text-container h2::after {
+  content: "";
+  display: block;
+  width: 100%;
+  border-bottom: 3px dotted red;
+}
+.what-we-do-flex .what-we-do-text-container p {
+  font-size: 1.3vw;
+  letter-spacing: 0.1vw;
+  margin-left: 3vw;
+}
+.what-we-do-flex .what-we-do-text-container .more-button {
+  display: inline-flex;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  perspective-origin: calc(100% - 52px);
+}
+.what-we-do-flex .what-we-do-text-container .more-button svg {
+  transform: rotate(270deg);
+}
+.what-we-do-flex .what-we-do-text-container button {
+  cursor: pointer;
+  background: none;
+  border: none;
+  position: relative;
+  color: #eee;
+  text-transform: uppercase;
+  padding: 0 25px;
+  font-size: 2vw;
+  height: 50px;
+  line-height: 50px;
+  letter-spacing: 3px;
+  background-color: #ff4a50;
+}
+.what-we-do-flex .what-we-do-text-container .button-icon {
+  font-weight: 700;
+  background: #eee;
+  color: #172d67;
+  text-align: center;
+  font-size: 24px;
+  width: 50px;
+  height: 50px;
+  line-height: 42px;
+  box-sizing: border-box;
+  border: 4px solid #ff4a50;
+  border-left: none;
+  transition: 400ms transform ease-in-out;
+  transform: rotateY(90deg);
+  transform-origin: left;
+}
+.what-we-do-flex .what-we-do-text-container .more-button:hover .button-icon {
+  transform: rotateY(0deg);
+}
+
+@media only screen and (max-width: 700px) {
+  header h1 {
+    font-size: 13vw;
+  }
+  header .mobile-break {
+    display: block;
+  }
+  header .hamburger {
+    display: block;
+    z-index: 33;
+  }
+  header .hamburger.active .bar:nth-child(2) {
+    opacity: 0;
+  }
+  header .hamburger.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  header .hamburger.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+  header .more-button {
+    top: 65%;
+  }
+  header .more-button .button-icon {
+    transform: none;
+    height: auto;
+  }
+  header .more-button .button-icon svg {
+    height: 100%;
+  }
+  header .more-button button {
+    font-size: 5vw;
+    height: 100%;
+    line-height: 3.3vh;
+  }
+
+  .nav-menu {
+    z-index: 3;
+    height: 50%;
+    position: fixed;
+    top: -100%;
+    flex-direction: column;
+    gap: 0;
+    text-align: center;
+    background: rgba(23, 45, 103, 0.9);
+    width: 100%;
+    transition: 0.5s;
+    font-size: 4vw;
+  }
+
+  .nav-item {
+    margin: 1rem 0;
+  }
+
+  .nav-menu.active {
+    top: 0;
+  }
+
+  main .introduce .introduce-text-container p {
+    line-height: 3vh;
+    font-size: 2.7vw;
+    padding: 0;
+    font-weight: 400;
+  }
+  main .who-we-are-section {
+    margin-bottom: 10vh;
+  }
+  main .who-we-are-section .who-we-are h1 {
+    font-size: 8vw;
+  }
+  main .who-we-are-section .who-we-are .who-we-are-flex {
+    display: block;
+    width: 100%;
+  }
+  main .who-we-are-section .who-we-are .who-we-are-flex-item {
+    width: 100%;
+    display: flex;
+    margin-bottom: 2rem;
+  }
+  main .who-we-are-section .who-we-are .who-we-are-text-container {
+    width: 50%;
+    padding: 0;
+  }
+  main .who-we-are-section .who-we-are .who-we-are-text-container h2 {
+    font-size: 4vw;
+  }
+  main .who-we-are-section .who-we-are .who-we-are-text-container p {
+    font-size: 2vw;
+  }
+  main .what-we-do-section .what-we-do-flex {
+    padding: 0;
+  }
+  main .what-we-do-section .what-we-do-flex .what-we-do-container {
+    border-bottom: 3px dotted #00b3be;
+    padding: 2rem;
+  }
+  main .what-we-do-section .what-we-do-flex .what-we-do-container .what-we-do-text-container {
+    width: 100%;
+    padding-bottom: 5rem;
+  }
+  main .what-we-do-section .what-we-do-flex .what-we-do-container .what-we-do-text-container h2 {
+    font-size: 3vw;
+  }
+  main .what-we-do-section .what-we-do-flex .what-we-do-container .what-we-do-text-container h2::after {
+    border: none;
+  }
+  main .what-we-do-section .what-we-do-flex .what-we-do-container .what-we-do-text-container p {
+    font-size: 2vw;
+  }
+}
+@media only screen and (max-width: 500px) {
+  @supports (-webkit-touch-callout: none) {
+    .glitch {
+      -webkit-animation: none;
+              animation: none;
+    }
+
+    .glitch::before,
+.glitch::after {
+      display: none;
+    }
+  }
+  header h1 {
+    top: 35%;
+  }
+
+  main .introduce .introduce-text-container {
+    background: rgba(23, 45, 103, 0.1);
+    flex-direction: column-reverse;
+  }
+  main .introduce .introduce-text-container p {
+    letter-spacing: 0.1vw;
+    line-height: 4vh;
+    padding: 3rem 0;
+    font-size: 7vw;
+    font-weight: 400;
+    width: 100%;
+    text-align: center;
+    font-family: "Open Sans", sans-serif;
+  }
+  main .introduce .introduce-text-container img {
+    margin-bottom: 3vw;
+    width: 50%;
+  }
+  main .who-we-are-section {
+    margin-bottom: 10vh;
+  }
+  main .who-we-are-section .who-we-are h1 {
+    font-size: 10vw;
+    margin: 3vh 0;
+  }
+  main .who-we-are-section .who-we-are .who-we-are-flex .who-we-are-flex-item {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+  main .who-we-are-section .who-we-are .who-we-are-flex .who-we-are-img-container {
+    margin-bottom: 3vh;
+    border-bottom: 3px dotted #ff4a50;
+  }
+  main .who-we-are-section .who-we-are .who-we-are-flex .who-we-are-text-container {
+    width: 90%;
+    text-align: center;
+    margin-bottom: 5vh;
+  }
+  main .who-we-are-section .who-we-are .who-we-are-flex .who-we-are-text-container h2 {
+    margin-bottom: 1vh;
+    font-size: 10vw;
+    color: #ff4a50;
+  }
+  main .who-we-are-section .who-we-are .who-we-are-flex .who-we-are-text-container p {
+    font-size: 5vw;
+    text-align: center;
+  }
+  main .what-we-do-section {
+    margin-bottom: 2vh;
+  }
+  main .what-we-do-section h1 {
+    font-size: 10vw;
+  }
+  main .what-we-do-section .what-we-do-flex {
+    width: 90%;
+  }
+  main .what-we-do-section .what-we-do-flex .what-we-do-container {
+    padding: 2rem 1rem;
+    display: flex;
+    flex-direction: column-reverse;
+    position: relative;
+  }
+  main .what-we-do-section .what-we-do-flex .what-we-do-container .what-we-do-img-container {
+    position: static;
+    width: 70%;
+  }
+  main .what-we-do-section .what-we-do-flex .what-we-do-container .what-we-do-img-container img {
+    top: 0;
+  }
+  main .what-we-do-section .what-we-do-flex .what-we-do-container .what-we-do-text-container {
+    margin-top: 3rem;
+  }
+  main .what-we-do-section .what-we-do-flex .what-we-do-container .what-we-do-text-container h2 {
+    font-size: 7vw;
+    text-align: center;
+    top: -24px;
+    margin-bottom: 1rem;
+  }
+  main .what-we-do-section .what-we-do-flex .what-we-do-container .what-we-do-text-container p {
+    font-size: 5vw;
+  }
+  main .what-we-do-section .what-we-do-flex .what-we-do-container .what-we-do-text-container .more-button {
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+  main .what-we-do-section .what-we-do-flex .what-we-do-container .what-we-do-text-container .more-button .button-icon {
+    transform: none;
+  }
+  main .what-we-do-section .what-we-do-flex .what-we-do-container .what-we-do-text-container .more-button button {
+    font-size: 5vw;
+    width: 100%;
+  }
+}/*# sourceMappingURL=main.css.map */

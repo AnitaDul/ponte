@@ -1,0 +1,660 @@
+@import "mixins.scss";
+
+$mainColor: #172d67;
+$secondaryColor: #00b3be;
+$accentColor: #ff4a50;
+$white: #eee;
+$mainFont: "Roboto", sans-serif;
+$secondaryFont: "Open Sans", sans-serif;
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+body {
+    background: $mainColor;
+    background: radial-gradient(circle, rgba(255, 74, 80, 1) 0%, rgba(23, 45, 103, 1) 100%);
+    background-attachment: fixed;
+}
+
+header {
+    //navigációs sáv  kezdete-------------------------
+
+    width: 100%;
+    height: 100vh;
+    font-family: $mainFont;
+    nav {
+        display: flex;
+        justify-content: space-between;
+        height: 10vh;
+    }
+    .logo {
+        padding: 1vw;
+        margin-left: 2rem;
+    }
+    .hamburger {
+        display: none;
+        margin-right: 5vw;
+        margin-top: 5vh;
+        .bar {
+            display: block;
+            width: 1.4rem;
+            height: 0.2rem;
+            margin: 0.3rem auto;
+            background: #eee;
+            -webkit-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
+        }
+    }
+
+    ul {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        font-size: 1.2vw;
+        letter-spacing: 0.1vw;
+        margin-right: 2vw;
+        li {
+            list-style-type: none;
+
+            #blog {
+                background: $accentColor;
+                &:hover {
+                    color: $mainColor;
+                }
+            }
+        }
+        a {
+            text-decoration: none;
+            color: $white;
+            padding: 0.5rem 1rem;
+            font-weight: 500;
+            transition: 0.2s ease-in-out;
+            position: relative;
+            &:hover {
+                color: $accentColor;
+            }
+        }
+    }
+
+    //navigációs sáv vége-------------------------
+    //hero text kezdete-------------------------
+
+    h1 {
+        position: absolute;
+        color: $white;
+        font-size: 7vw;
+        text-align: center;
+        width: 100%;
+        top: 25%;
+        z-index: 1;
+        letter-spacing: 0.1vw;
+    }
+    h1::before {
+        content: attr(data-text);
+        position: absolute;
+        color: $mainColor;
+        -webkit-text-stroke: 2px $accentColor;
+        z-index: -1;
+        top: 5px;
+    }
+    .mobile-break {
+        display: none;
+    }
+
+    //glitch animáció  kezdete-------------------------
+
+    .glitch {
+        position: relative;
+        animation: opacity 2s linear;
+        text-decoration: underline;
+    }
+    @keyframes glitch {
+        2%,
+        64% {
+            transform: translate(2px, 0) skew(0deg);
+        }
+        4%,
+        60% {
+            transform: translate(-2px, 0) skew(0deg);
+        }
+        62% {
+            transform: translate(0, 0) skew(5deg);
+        }
+    }
+    .glitch::before,
+    .glitch::after {
+        content: attr(data-text);
+        position: absolute;
+        left: 0;
+        text-decoration: underline;
+    }
+
+    .glitch::before {
+        animation: glitchTop 1s linear infinite;
+        clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+    }
+    @keyframes glitchTop {
+        2%,
+        64% {
+            transform: translate(2px, -2px);
+        }
+        4%,
+        60% {
+            transform: translate(-2px, 2px);
+        }
+        62% {
+            transform: translate(13px, -1px) skew(-13deg);
+        }
+    }
+
+    .glitch::after {
+        animation: glitchBotom 1.5s linear infinite;
+        clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
+        -webkit-clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
+    }
+    @keyframes glitchBotom {
+        2%,
+        64% {
+            transform: translate(-2px, 0);
+        }
+        4%,
+        60% {
+            transform: translate(-2px, 0);
+        }
+        62% {
+            transform: translate(-22px, 5px) skew(21deg);
+        }
+    }
+
+    //glitch animáció  vége-------------------------
+
+    //hero text vége-------------------------
+
+    //header "tudj meg többet" gomb kezdete-------------------------
+
+    .header-content {
+        width: 70%;
+        height: 70%;
+        border: 2px solid $accentColor;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 10px;
+        background: $mainColor;
+        border-radius: 3px;
+        position: absolute;
+        @include absolute-center();
+    }
+    .more-button {
+        display: inline-flex;
+        position: absolute;
+        top: 60%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        perspective: 200px;
+        perspective-origin: calc(100% - 52px);
+    }
+
+    button {
+        @include button-element-more();
+    }
+    .button-icon {
+        @include button-icon();
+    }
+    .more-button:hover .button-icon {
+        transform: rotateY(0deg);
+    }
+
+    //header "tudj meg többet" gomb vége-------------------------
+}
+
+//main content--------------------------------------------
+
+main {
+    background: linear-gradient(180deg, rgba(255, 74, 80, 0.001) 0%, rgba(23, 45, 103, 1) 60%);
+    padding-bottom: 10vh;
+
+    //introduce section kezdete ----------------
+
+    .introduce {
+        padding: 5vh 0;
+        .top-decor {
+            width: 100%;
+            height: 20vh;
+            background-image: url(../img/3dtriangles.svg);
+        }
+        .bottom-decor {
+            width: 100%;
+            height: 20.5vh;
+            background-image: url(../img/3dtriangles2.svg);
+        }
+        .introduce-text-container {
+            background: rgba($mainColor, 0.5);
+            display: flex;
+            margin: 0 auto;
+            padding: 5vw;
+            justify-content: space-between;
+            align-items: center;
+            p {
+                width: 50%;
+                color: $white;
+                font-size: 1.5vw;
+                font-weight: 400;
+                padding-left: 5%;
+                font-family: $mainFont;
+                line-height: 5vh;
+                letter-spacing: 0.1vw;
+            }
+            img {
+                margin-right: 10vw;
+                align-self: center;
+                width: 20%;
+            }
+        }
+    }
+}
+//introduce section vége ----------------
+
+//kik vagyunk section kezdete ------------------
+.who-we-are-section {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20vh;
+
+    .who-we-are {
+        h1 {
+            @include section-h1();
+        }
+    }
+    .who-we-are-flex {
+        display: flex;
+        justify-content: space-between;
+        width: 70%;
+        margin: 0 auto;
+        .who-we-are-flex-item {
+            width: 30%;
+            text-align: center;
+        }
+        .who-we-are-img-container {
+            width: 150px;
+            height: 150px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 50%;
+            margin: 0 auto;
+            border: 3px solid $secondaryColor;
+            box-shadow: rgba($secondaryColor, 0.44) 0px 0px 50px;
+            img {
+                position: absolute;
+                display: inline;
+                @include absolute-center;
+                height: 100px;
+            }
+        }
+        .who-we-are-text-container {
+            color: $white;
+            font-size: 1vw;
+            font-family: $secondaryFont;
+            padding: 1vw;
+            border-radius: 3px;
+            h2 {
+                margin-bottom: 4vh;
+                font-size: 2vw;
+                position: relative;
+            }
+            p {
+                font-size: 1vw;
+                letter-spacing: 0.1vw;
+                text-align: left;
+            }
+        }
+    }
+}
+//kik vagyunk section vége ------------------
+
+//Mit csinálunk section kezdete---------------------
+
+.what-we-do-section {
+    margin-bottom: 10vh;
+    h1 {
+        @include section-h1();
+    }
+}
+.what-we-do-flex {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    margin: auto;
+    background: $mainColor;
+    border: 2px solid $secondaryColor;
+    box-shadow: rgba($secondaryColor, 0.64) 0px 25px 50px;
+    padding: 5vh 4vw;
+    img {
+        width: 100%;
+    }
+    .what-we-do-decor {
+        width: 30px;
+        height: 100%;
+        background: $accentColor;
+    }
+    .what-we-do-container {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        &:hover .svg {
+            transform: rotate(180deg);
+        }
+    }
+    .what-we-do-img-container {
+        position: relative;
+
+        .product-image {
+            position: absolute;
+            z-index: 1;
+            margin: 0 auto;
+            right: 0;
+        }
+        .svg {
+            position: relative;
+            width: 120%;
+            height: 100%;
+            transition: all 0.8s ease-in-out;
+            &:hover {
+                transform: rotate(180deg);
+            }
+        }
+    }
+    .what-we-do-text-container {
+        position: relative;
+        color: $white;
+        width: 90%;
+        font-size: 1vw;
+        font-family: $secondaryFont;
+        padding-bottom: 7rem;
+        h2 {
+            margin-bottom: 4vh;
+            font-size: 2vw;
+            position: relative;
+            letter-spacing: 0.1vw;
+            &::after {
+                content: "";
+                display: block;
+                width: 100%;
+                border-bottom: 3px dotted red;
+            }
+        }
+        p {
+            font-size: 1.3vw;
+            letter-spacing: 0.1vw;
+            margin-left: 3vw;
+        }
+        .more-button {
+            display: inline-flex;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            perspective-origin: calc(100% - 52px);
+
+            svg {
+                transform: rotate(270deg);
+            }
+        }
+        button {
+            @include button-element-more();
+        }
+        .button-icon {
+            @include button-icon();
+        }
+        .more-button:hover .button-icon {
+            transform: rotateY(0deg);
+        }
+    }
+}
+
+//Mit csinálunk section vége---------------------
+
+//RESZPONZV------------------------------------------------------------------------
+
+@media only screen and (max-width: 700px) {
+    header {
+        h1 {
+            font-size: 13vw;
+        }
+        .mobile-break {
+            display: block;
+        }
+        .hamburger {
+            display: block;
+            z-index: 33;
+        }
+
+        .hamburger.active .bar:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active .bar:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+        .hamburger.active .bar:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+        .more-button {
+            top: 65%;
+            .button-icon {
+                transform: none;
+                height: auto;
+                svg {
+                    height: 100%;
+                }
+            }
+            button {
+                font-size: 5vw;
+                height: 100%;
+                line-height: 3.3vh;
+            }
+        }
+    }
+
+    .nav-menu {
+        z-index: 3;
+        height: 50%;
+        position: fixed;
+        top: -100%;
+        flex-direction: column;
+        gap: 0;
+        text-align: center;
+        background: rgba($mainColor, 0.9);
+        width: 100%;
+        transition: 0.5s;
+        font-size: 4vw;
+    }
+
+    .nav-item {
+        margin: 1rem 0;
+    }
+
+    .nav-menu.active {
+        top: 0;
+    }
+
+    main {
+        .introduce {
+            .introduce-text-container {
+                p {
+                    line-height: 3vh;
+                    font-size: 2.7vw;
+                    padding: 0;
+                    font-weight: 400;
+                }
+            }
+        }
+        .who-we-are-section {
+            margin-bottom: 10vh;
+
+            .who-we-are {
+                h1 {
+                    font-size: 8vw;
+                }
+                .who-we-are-flex {
+                    display: block;
+                    width: 100%;
+                }
+                .who-we-are-flex-item {
+                    width: 100%;
+                    display: flex;
+                    margin-bottom: 2rem;
+                }
+                .who-we-are-text-container {
+                    width: 50%;
+                    padding: 0;
+                    h2 {
+                        font-size: 4vw;
+                    }
+                    p {
+                        font-size: 2vw;
+                    }
+                }
+            }
+        }
+        .what-we-do-section {
+            .what-we-do-flex {
+                padding: 0;
+                .what-we-do-container {
+                    border-bottom: 3px dotted $secondaryColor;
+                    padding: 2rem;
+                    .what-we-do-text-container {
+                        width: 100%;
+                        padding-bottom: 5rem;
+                        h2 {
+                            font-size: 3vw;
+                            &::after {
+                                border: none;
+                            }
+                        }
+                        p {
+                            font-size: 2vw;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    @supports (-webkit-touch-callout: none) {
+            .glitch{animation: none;}
+            .glitch::before,
+            .glitch::after{
+                display: none;
+            }
+      }
+    header h1 {
+        top: 35%;
+    }
+    main {
+        .introduce {
+            .introduce-text-container {
+                background: rgba(23, 45, 103, 0.1);
+                flex-direction: column-reverse;
+                p {
+                    letter-spacing: 0.1vw;
+                    line-height: 4vh;
+                    padding: 3rem 0;
+                    font-size: 7vw;
+                    font-weight: 400;
+                    width: 100%;
+                    text-align: center;
+                    font-family: "Open Sans", sans-serif;
+                }
+                img {
+                    margin-bottom: 3vw;
+                    width: 50%;
+                }
+            }
+        }
+        .who-we-are-section {
+            margin-bottom: 10vh;
+
+            .who-we-are {
+                h1 {
+                    font-size: 10vw;
+                    margin: 3vh 0;
+                }
+                .who-we-are-flex {
+                    .who-we-are-flex-item {
+                        align-items: center;
+                        display: flex;
+                        flex-direction: column;
+                    }
+                    .who-we-are-img-container {
+                        margin-bottom: 3vh;
+                        border-bottom: 3px dotted $accentColor;
+                    }
+                    .who-we-are-text-container {
+                        width: 90%;
+                        text-align: center;
+                        margin-bottom: 5vh;
+
+                        h2 {
+                            margin-bottom: 1vh;
+                            font-size: 10vw;
+                            color: $accentColor;
+                        }
+                        p {
+                            font-size: 5vw;
+                            text-align: center;
+                        }
+                    }
+                }
+            }
+        }
+        .what-we-do-section {
+            margin-bottom: 2vh;
+            h1 {
+                font-size: 10vw;
+            }
+            .what-we-do-flex {
+                width: 90%;
+                .what-we-do-container {
+                    padding: 2rem 1rem;
+                    display: flex;
+                    flex-direction: column-reverse;
+                    position: relative;
+                    .what-we-do-img-container {
+                        position: static;
+                        width: 70%;
+                        img {
+                            top: 0;
+                        }
+                    }
+                    .what-we-do-text-container {
+                        margin-top: 3rem;
+
+                        h2 {
+                            font-size: 7vw;
+                            text-align: center;
+                            top: -24px;
+                            margin-bottom: 1rem;
+                        }
+                        p {
+                            font-size: 5vw;
+                        }
+                        .more-button {
+                            left: 50%;
+                            transform: translate(-50%, 0);
+                            .button-icon {
+                                transform: none;
+                            }
+                            button {
+                                font-size: 5vw;
+                                width: 100%;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
